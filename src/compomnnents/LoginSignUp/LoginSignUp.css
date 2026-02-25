@@ -1,0 +1,101 @@
+
+  .login-card {
+    width: 100%;
+    max-width: 380px;
+    background: white;
+    padding: 28px;
+    border-radius: 12px;
+    border: 1px solid #e6e6e6;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  }
+  
+  .login-card h2 {
+    margin: 0 0 18px;
+    font-size: 24px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  
+  .form-group label {
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .form-group input {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #cfcfcf;
+    font-size: 14px;
+    outline: none;
+  }
+  
+  .form-group input:focus {
+
+    box-shadow: 0  0 3px rgba(108, 99, 255, 0.15);
+  }
+  
+  .login-btn {
+    width: 100%;
+    padding: 11px 12px;
+    border: none;
+    border-radius: 8px;
+    background: #6c63ff;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 6px;
+  }
+  
+  .login-btn:hover {
+    background: #5a52e6;
+  }
+  
+  .debug-text {
+    margin: 0;
+    font-size: 12px;
+    color: #666;
+  }
+
+  .signup {
+    color: gray;
+  }
+
+  .login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .toggle-section {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .toggle-text {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+  }
+
+  .toggle-btn {
+    background: none;
+    border: none;
+    color: #6c63ff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+    margin-left: 4px;
+  }
+
+  .toggle-btn:hover {
+    color: #5a52e6;
+  }
