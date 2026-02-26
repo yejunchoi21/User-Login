@@ -57,7 +57,7 @@
 
 .search-input:focus {
   border-color: #6c63ff;
-  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(153, 17, 17, 0.15);
 }
 
 .search-button {
@@ -164,4 +164,40 @@
 .content-area p {
   color: #666;
   margin: 0;
+}
+
+.bottom-nav {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+  background: #ffffff;              /* ✅ white background */
+  border-top: 1px solid #e0e0e0;    /* ✅ light gray border */
+  z-index: 999;
+}
+
+.nav-btn {
+  background: transparent;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-icon {
+  font-size: 28px; /* controls size */
+}
+
+.nav-btn:active {
+  transform: scale(0.95);
+}
+
+.home-container {
+  padding-bottom: 70px; /* so content doesn't hide under nav */
 }

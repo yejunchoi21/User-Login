@@ -1,15 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { supabase } from "../../supabaseClient";
-import "./Home.css";
 
-const Home = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+import "./Home.css";
+import {RiHome5Line,RiSearchLine, RiAddBoxLine,
+  RiHeart3Line, RiUserLine,
+} from "react-icons/ri";  
+
+const Home = ({ onOpenProfile }) => {  const [searchQuery, setSearchQuery] = useState("");
   const [user, setUser] = useState(null);
 
+  // NEW: controls whether the logout menu is visible
+  const [menuOpen, setMenuOpen] = useState(false);
+
   // Get current user from Supabase
-  React.useEffect(() => {
+  useEffect(() => {
     const getUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
       setUser(user);
     };
     getUser();
@@ -18,12 +26,10 @@ const Home = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     console.log("Searching for:", searchQuery);
-    // Add your search logic here
   };
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    // Redirect to login page or update state
     window.location.reload();
   };
 
@@ -33,7 +39,7 @@ const Home = () => {
       <header className="home-header">
         <div className="header-content">
           <h1 className="logo">Your App</h1>
-          
+
           <div className="header-right">
             <div className="search-container">
               <form onSubmit={handleSearch} className="search-form">
@@ -53,15 +59,24 @@ const Home = () => {
             <div className="profile-section">
               {user ? (
                 <div className="profile-dropdown">
-                  <div className="profile-icon">
+                  {/* CHANGED: make this clickable */}
+                  <button
+                    type="button"
+                    className="profile-icon"
+                    onClick={() => setMenuOpen((prev) => !prev)}
+                  >
                     {user.email?.charAt(0).toUpperCase() || "U"}
-                  </div>
-                  <div className="profile-menu">
-                    <p className="profile-email">{user.email}</p>
-                    <button onClick={handleLogout} className="logout-btn">
-                      Logout
-                    </button>
-                  </div>
+                  </button>
+
+                  {/* CHANGED: only show menu if menuOpen is true */}
+                  {menuOpen && (
+                    <div className="profile-menu">
+                      <p className="profile-email">{user.email}</p>
+                      <button onClick={handleLogout} className="logout-btn">
+                        Logout
+                      </button>
+                    </div>
+                  )}
                 </div>
               ) : (
                 <div className="profile-icon">U</div>
@@ -78,6 +93,34 @@ const Home = () => {
           <p>Your content goes here...</p>
         </div>
       </main>
+
+      <nav className="bottom-nav">
+  <button className="nav-btn" type="button" aria-label="Home">
+    <RiHome5Line className="nav-icon" />
+  </button>
+
+  <button className="nav-btn" type="button" aria-label="Search">
+    <RiSearchLine className="nav-icon" />
+  </button>
+
+  <button className="nav-btn" type="button" aria-label="Create">
+    <RiAddBoxLine className="nav-icon" />
+  </button>
+
+  <button className="nav-btn" type="button" aria-label="Activity">
+    <RiHeart3Line className="nav-icon" />
+  </button>
+
+  {/* Only ONE profile button, this one navigates to Profile */}
+  <button
+    className="nav-btn"
+    type="button"
+    aria-label="Profile"
+    onClick={onOpenProfile}
+  >
+    <RiUserLine className="nav-icon" />
+  </button>
+</nav>
     </div>
   );
 };
